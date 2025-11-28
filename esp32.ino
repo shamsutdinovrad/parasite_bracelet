@@ -30,10 +30,10 @@ GyverOLED<SSD1306_128x32, OLED_NO_BUFFER> oled;
 #define bufferLen 1024 //1024
 int16_t sBuffer[1024]; //bufferLen
 
-const char* ssid = "TP-Link_B3DC";//"TP-Link_B3DC";//"TP-Link_B3DC";
-const char* password = "56148916";//"56148916";
+const char* ssid = "YOUR_WI-FI";
+const char* password = "YOUR_PASSWORD";
 
-const char* websocket_server_host = "192.168.0.15";//"10.150.149.17";//"192.168.0.129";
+const char* websocket_server_host = "YOUR_IP";
 const uint16_t websocket_server_port = 8888;  // <WEBSOCKET_SERVER_PORT>
 
 using namespace websockets;
