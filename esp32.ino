@@ -4,45 +4,41 @@
 #include <Wire.h>
 #include <Adafruit_SSD1306.h>
 #include <Adafruit_GFX.h>
-//#include "USB.h"
-//#include "USBCDC.h"
 #include <GyverOLED.h>
-//USBCDC USBSerial;
-//GyverOLED<SSD1306_128x32> oled;
 GyverOLED<SSD1306_128x32, OLED_NO_BUFFER> oled;
 
 #define SCREEN_WIDTH 128
 #define SCREEN_HEIGHT 32
 #define OLED_RESET -1
 
-#define I2C_SDA 21//10//21//5
-#define I2C_SCL 22//11//22//6
+#define I2C_SDA 21
+#define I2C_SCL 22
 
-#define I2S_SD 33//7//33//33//33//9
-#define I2S_WS 26//8//26//32//32//8
-#define I2S_SCK 25//9//25//25//25//7
+#define I2S_SD 33
+#define I2S_WS 26
+#define I2S_SCK 25
 #define I2S_PORT I2S_NUM_0
-#define VIBRO_PIN 18//1//18//26
+#define VIBRO_PIN 18
 
 #define ANALOG_PIN 10 
 
-#define bufferCnt 16 //5
-#define bufferLen 1024 //1024
-int16_t sBuffer[1024]; //bufferLen
+#define bufferCnt 16
+#define bufferLen 1024
+int16_t sBuffer[1024];
 
 const char* ssid = "YOUR_WI-FI";
 const char* password = "YOUR_PASSWORD";
 
 const char* websocket_server_host = "YOUR_IP";
-const uint16_t websocket_server_port = 8888;  // <WEBSOCKET_SERVER_PORT>
+const uint16_t websocket_server_port = 8888;
 
 using namespace websockets;
 WebsocketsClient client;
 bool isWebSocketConnected;
 bool active = false;
 
-const String words[9] = {"типа", "типы", "типу", "ну", "короче", "в общем", "как бы", "так сказать", "вот"};
-const int words_len = 9;
+const String words[7] = {"типа", "ну", "короче", "в общем", "как бы", "так сказать", "вот"};
+const int words_len = 7;
 
 bool isBad(String word){
   for (int i = 0; i < words_len; i++){
