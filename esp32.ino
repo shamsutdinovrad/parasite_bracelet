@@ -86,7 +86,6 @@ void i2s_install() {
   const i2s_config_t i2s_config = {
     .mode = i2s_mode_t(I2S_MODE_MASTER | I2S_MODE_RX),
     .sample_rate = 44100,
-    //.sample_rate = 16000,
     .bits_per_sample = i2s_bits_per_sample_t(16),
     .channel_format = I2S_CHANNEL_FMT_ONLY_LEFT,
     .communication_format = i2s_comm_format_t(I2S_COMM_FORMAT_STAND_I2S),//i2s_comm_format_t(
@@ -132,9 +131,6 @@ void setup() {
 
 void loop() {
 client.onMessage(onMessageCallback);
-//if (!isWebSocketConnected)
-//  connectWSServer();
-//client.onEvent(onEventsCallback);
 }
 
 void connectWiFi() {
@@ -165,25 +161,14 @@ void micTask() {
   i2s_install();
   i2s_setpin();
   i2s_start(I2S_PORT);
-
-   ////////////////////////
-
-  int counter = 0;
-  const int pollInterval = 5;
+  
   size_t bytesIn = 0;
   while (1) {
     esp_err_t result = i2s_read(I2S_PORT, &sBuffer, bufferLen, &bytesIn, portMAX_DELAY);
     
     if (result == ESP_OK && isWebSocketConnected) {
-      
       client.sendBinary((const char*)sBuffer, bytesIn);
       client.poll();
-      /*
-      counter++;
-      if (counter >= pollInterval){
-        client.poll();
-      }
-      */
     }
   }
 }
