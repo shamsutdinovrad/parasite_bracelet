@@ -51,8 +51,7 @@ bool isBad(String word){
 void onMessageCallback(WebsocketsMessage message) {
   Serial.print("Got Message: ");
   Serial.println(message.data());
-  //oled.print(message.data());
-  //oled.update();
+
   String str = message.data();
   if(isBad(str)){
     digitalWrite(VIBRO_PIN, HIGH);
@@ -66,12 +65,7 @@ void onMessageCallback(WebsocketsMessage message) {
       client.poll();
     }
     digitalWrite(VIBRO_PIN, LOW);
-    //oled.setScale(1.5);
-    //oled.print("(0_0)");
-    //oled.update();
-
   }
-  
 }
 
 void onEventsCallback(WebsocketsEvent event, String data) {
