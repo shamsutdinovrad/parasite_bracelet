@@ -112,17 +112,14 @@ void i2s_setpin() {
 void micTask();
 void setup() {
   Serial.begin(115200);
-  
   pinMode(VIBRO_PIN, OUTPUT);
   
   Wire.begin(I2C_SDA, I2C_SCL);
   oled.init();
-  
-  
   oled.clear();
   oled.update();
   oled.setScale(2);
-  oled.home();        // курсор в 0,0
+  oled.home();
   oled.print("(0_0)");
   oled.update();
   
@@ -131,8 +128,6 @@ void setup() {
   client.poll();
 
   micTask();
-  //xTaskCreatePinnedToCore(micTask, "micTask", 10000, NULL, 1, NULL, 1);
-  //xTaskCreatePinnedToCore(serialTask, "serialTask", 4096, NULL, 1, NULL, 1);
 }
 
 void loop() {
